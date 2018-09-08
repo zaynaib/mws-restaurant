@@ -5,7 +5,6 @@ This resturant app also has a service worker meaning it works online and offline
 
 ![Resturant Pixel gif](https://media.giphy.com/media/114NEaW5Q5Gikw/giphy.gif)
 
-
 ## Technologies 
 
 * Mapbox/Leaflet

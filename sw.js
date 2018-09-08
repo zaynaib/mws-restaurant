@@ -1,8 +1,9 @@
 //site assets
 
-let cacheName = 'myCache1';
- // Images
- let siteImage = [
+const cacheName = 'myCache';
+
+const filesToCache = [
+    //images
     '/img/1.jpg',
     '/img/2.jpg',
     '/img/3.jpg',
@@ -12,16 +13,17 @@ let cacheName = 'myCache1';
     '/img/7.jpg',
     '/img/8.jpg',
     '/img/9.jpg',
-    '/img/10.jpg'
-];
+    '/img/10.jpg',
 
-// Site Pages
-let siteUrl = [
+    //site pages
+    '/',
     'index.html',
+    'restaurant.html',
     '/css/styles.css',
     '/js/dbhelper.js',
-    '/js/index.js',
-    '/js/restaurant_info.js'
+    '/js/restaurant_info.js',
+    '/data/restaurants.json',
+    '/js/main.js'
 ];
 
 
@@ -34,10 +36,8 @@ self.addEventListener('install',event => {
             .open(cacheName)
             .then(cache => {
                 console.log('Service Worker: Caching Files');
-                cache.addAll(siteImage);
-                cache.addAll(siteUrl);
+                cache.addAll(filesToCache);
             })
-            .then( () => self.skipWaiting())
     );
 }); //end of add eventListener
 
@@ -64,11 +64,12 @@ self.addEventListener('activate', event => {
 //Call Fetch Event
 
 self.addEventListener('fetch', event => {
+    console.log('Fetch event for ', event.request.url);
     event.respondWith(
-      fetch(event.request).catch(()=> {
-        return caches.match(event.request);
-      })
-    );
-  });
-
+        caches.match(event.request)
+        .then(response => response ? response : fetch(event.request))
+        .catch(error => {console.log(error) })
+    ); // end of respondWith
+    
+  }); //end of addEventListener 
 
