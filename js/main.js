@@ -1,3 +1,16 @@
+//main js is the view for the index.html page
+
+//make sure service workers are supported
+if('serviceWorker' in navigator){
+  console.log('Service Workers supported')
+  window.addEventListener('load',() => {
+  navigator.serviceWorker
+            .register('../sw.js')
+            .then(reg => console.log('Service Worker: Registered'))
+            .catch(err => console.log(`Service Worker Error: ${err}`))
+  })
+}
+
 let restaurants,
   neighborhoods,
   cuisines
@@ -161,9 +174,10 @@ createRestaurantHTML = (restaurant) => {
   const image = document.createElement('img');
   image.className = 'restaurant-img';
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  image.alt =`An image of ${restaurant.name} in ${restaurant.neighborhood}`;
   li.append(image);
 
-  const name = document.createElement('h1');
+  const name = document.createElement('h2');
   name.innerHTML = restaurant.name;
   li.append(name);
 
@@ -176,9 +190,11 @@ createRestaurantHTML = (restaurant) => {
   li.append(address);
 
   const more = document.createElement('a');
-  more.innerHTML = 'View Details';
+  more.innerHTML = 'View Details'
   more.href = DBHelper.urlForRestaurant(restaurant);
-  li.append(more)
+  more.setAttribute('aria-label',`View details about ${restaurant.name}`);
+  more.tabIndex = '3';
+  li.append(more);
 
   return li
 }
