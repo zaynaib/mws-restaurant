@@ -167,6 +167,7 @@ createReviewHTML = (review) => {
 
   const date = document.createElement('p');
   date.innerHTML = review.date;
+  date.setAttribute('class','dateHeader');
   li.appendChild(date);
 
   const rating = document.createElement('p');
