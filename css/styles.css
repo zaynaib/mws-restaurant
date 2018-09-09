@@ -60,6 +60,7 @@ nav {
 nav h1 {
   margin: auto;
   padding:25px 20px;
+  display:flex;
 }
 nav h1 a {
   color: #fff;
