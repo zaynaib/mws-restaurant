@@ -12,6 +12,7 @@ body {
 	margin: 0 auto;
   position:relative;
 
+  
 }
 
 ul, li {
@@ -116,6 +117,13 @@ nav h1 a {
   background-color:#333;
   align-items: center;
   padding: 15px 0;
+ /* 
+   background-color: #3397DB;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  */
 }
 .filter-options h2 {
   color: white;
@@ -211,7 +219,7 @@ nav h1 a {
 }
 
 /*change to button */
-#restaurants-list li a /*button*/ {
+#restaurants-list li button {
 
   border-radius:10px;
   background-color:#cc8400;

@@ -177,24 +177,35 @@ createRestaurantHTML = (restaurant) => {
   image.alt =`An image of ${restaurant.name} in ${restaurant.neighborhood}`;
   li.append(image);
 
+  //create div and append all resturant info to div
+  const div = document.createElement('div');
+  div.className = 'restaurant-text-area';
+  li.append(div);
+
   const name = document.createElement('h2');
   name.innerHTML = restaurant.name;
-  li.append(name);
+  div.append(name);
 
   const neighborhood = document.createElement('p');
   neighborhood.innerHTML = restaurant.neighborhood;
-  li.append(neighborhood);
+  div.append(neighborhood);
 
   const address = document.createElement('p');
   address.innerHTML = restaurant.address;
-  li.append(address);
+  div.append(address);
 
-  const more = document.createElement('a');
+  
+
+  const more = document.createElement('button');
   more.innerHTML = 'View Details'
-  more.href = DBHelper.urlForRestaurant(restaurant);
+  more.onclick = function(){
+    const url = DBHelper.urlForRestaurant(restaurant);
+    window.location = url;
+  }
+  //more.href = DBHelper.urlForRestaurant(restaurant);
   more.setAttribute('aria-label',`View details about ${restaurant.name}`);
   more.tabIndex = '3';
-  li.append(more);
+  div.append(more);
 
   return li
 }
