@@ -197,6 +197,8 @@ createRestaurantHTML = (restaurant) => {
   
 
   const more = document.createElement('button');
+  more.setAttribute('style','cursor: pointer');
+
   more.innerHTML = 'View Details'
   more.onclick = function(){
     const url = DBHelper.urlForRestaurant(restaurant);

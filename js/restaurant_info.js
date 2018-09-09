@@ -1,15 +1,3 @@
-//make sure service workers are supported
-if('serviceWorker' in navigator){
-  console.log('Service Workers supported')
-  window.addEventListener('load',() => {
-  navigator.serviceWorker
-            .register('../sw.js')
-            .then(reg => console.log('Service Worker: Registered'))
-            .catch(err => console.log(`Service Worker Error: ${err}`))
-  })
-}
-
-
 //this is the view for the resturant info page
 let restaurant;
 var newMap;
@@ -139,7 +127,7 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => 
  */
 fillReviewsHTML = (reviews = self.restaurant.reviews) => {
   const container = document.getElementById('reviews-container');
-  const title = document.createElement('h4');
+  const title = document.createElement('h2');
   title.innerHTML = 'Reviews';
   container.appendChild(title);
 
